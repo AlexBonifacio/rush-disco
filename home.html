@@ -7,6 +7,15 @@
 	<link rel="stylesheet" href="./css/main.css">
 	<link rel="stylesheet" href="./css/cursor.css">
   </head>
+  <style>
+	@keyframes doubleFlashBG {
+  0%, 50%, 100% { --flash-alpha: 0; }
+  25%, 75%      { --flash-alpha: 1; }
+}
+	.flash-bg {
+  animation: doubleFlashBG var(--flash-duration, 600ms) ease-in-out forwards;
+}
+  </style>
   <body class="">
     <div class="cards-wrapper">
       <div class="card" onclick="location.href='profil1.html'">
@@ -40,5 +49,43 @@
 	<div class="cursor-halo"></div>
 	<div class="cursor-core"></div>
 	<script src="./script/neon.js"></script>
+	<script>
+		(function() {
+		  /**
+		   * @param {string[]} colors - Tableau de couleurs à alterner (par défaut ['white','black']).
+		   * @param {number} totalFlashes - Nombre total de changements (par défaut 3).
+		   * @param {number} interval - Délai entre chaque flash en ms (par défaut 100).
+		   */
+		  function flashBackground(colors, totalFlashes, interval) {
+			// valeurs par défaut
+			colors = Array.isArray(colors) && colors.length > 0 ? colors : ['#9877a2','black'];
+			totalFlashes = typeof totalFlashes === 'number' && totalFlashes > 0 ? totalFlashes : 4;
+			interval = typeof interval === 'number' && interval > 0 ? interval : 50;
+			
+			var b = document.body;
+			var original = getComputedStyle(b).background;
+			var i = 0;
+			
+			while (i < totalFlashes) {
+			  (function(count) {
+				setTimeout(function() {
+				  b.style.background = colors[count % colors.length];
+				  if (count === totalFlashes - 1) {
+					setTimeout(function() {
+					  b.style.background = original;
+					}, interval);
+				  }
+				}, count * interval);
+			  })(i);
+			  i++;
+			}
+		  }
+		
+		  // Expose la fonction globalement
+		  window.flashBackground = flashBackground;
+		})();
+		</script>
+		
+		
   </body>
 </html>
