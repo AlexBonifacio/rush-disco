@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accueil Cyberpunk</title>
+    <style>
+      :root {
+        --bg-dark: #0d0d0d;
+        --neon-pink: #ff16d1;
+        --neon-blue: #00e5ff;
+        --card-bg: rgba(30, 30, 30, 0.8);
+        --transition: 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @font-face {
+        font-family: "Neon";
+        src: url("Neon.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: #fff;
+        font-family: "Segoe UI", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cards-wrapper {
+        width: 90%;
+        max-width: 80%;
+        height: 90vh; /* wrapper fixe à 90% de la hauteur de l’écran */
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .card {
+        background: var(--card-bg);
+        width: 30%;
+        height: 100%; /* la carte fait toute la hauteur du wrapper */
+        display: flex;
+        flex-direction: column;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgb(255, 255, 255);
+        cursor: pointer;
+        transition: transform var(--transition);
+        border: 1px solid white;
+        transform-style: preserve-3d; /* nécessaire pour conserver les rotations 3D */
+        backface-visibility: hidden; /* cache le verso si jamais */
+      }
+
+      /* carte de gauche légèrement inclinée vers l’intérieur */
+      .cards-wrapper .card:nth-child(1) {
+        transform: rotateY(10deg);
+        transform-origin: left center;
+      }
+
+		/* carte de droite inclinée en sens inverse */
+	.cards-wrapper .card:nth-child(3) {
+	transform: rotateY(-10deg);
+	transform-origin: right center;
+	}
+      .card:hover {
+        transform: rotateY(0deg translateY(-10px) scale(1.02);
+      }
+
+      .card-img {
+        flex: 1; /* l’image prend tout l’espace libre au-dessus du contenu */
+        width: 100%;
+        object-fit: cover; /* remplissage sans déformation */
+        display: block;
+        transition: transform var(--transition), filter var(--transition);
+      }
+
+      .card:hover .card-img {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+      }
+
+      .card-content {
+        padding: 16px;
+        text-align: center;
+        flex-shrink: 0; /* pour que le contenu garde sa taille d’origine */
+      }
+
+      .card-title {
+        margin-bottom: 8px;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--neon-pink);
+      }
+
+      .card-text {
+        font-size: 1rem;
+        line-height: 1.4;
+        color: #ccc;
+      }
+
+      .card-img {
+        width: 100%;
+        height: 80vh;
+      }
+
+      .card-content h2 {
+        font-family: "Neon", sans-serif;
+        font-size: 2rem;
+        color: white;
+      }
+
+      @media (max-width: 800px) {
+        .cards-wrapper {
+          flex-direction: column;
+          align-items: center;
+          padding-top: 150px;
+        }
+        .card {
+          width: 80%;
+          margin-bottom: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body class="">
+    <div class="cards-wrapper">
+      <div class="card" onclick="location.href='profil2.html'">
+        <img src="cyberpunk2.png" alt="Personnage 2" class="card-img" />
+        <div class="card-content">
+          <h2 class="card-title">Vapor</h2>
+          <p class="card-text">Artiste des néons et hackeuse d’émotions.</p>
+        </div>
+      </div>
+      <div class="card" onclick="location.href='profil1.html'">
+        <img src="cyberpunk1.png" alt="Personnage 1" class="card-img" />
+        <div class="card-content">
+          <h2 class="card-title">Nox</h2>
+          <p class="card-text">Pirate de l’ombre et virtuose du code.</p>
+        </div>
+      </div>
+      <div class="card" onclick="location.href='profil3.html'">
+        <img src="cyberpunk3.png" alt="Personnage 3" class="card-img" />
+        <div class="card-content">
+          <h2 class="card-title">Glitch</h2>
+          <p class="card-text">Mécano de l’impossible et maître des drones.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

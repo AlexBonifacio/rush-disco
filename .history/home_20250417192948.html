@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accueil Cyberpunk</title>
+  <style>
+    :root {
+      --bg-dark: #0d0d0d;
+      --neon-pink: #ff16d1;
+      --neon-blue: #00e5ff;
+      --card-bg: rgba(30, 30, 30, 0.8);
+      --transition: 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cards-wrapper {
+      position: relative;
+      width: 90%;
+      max-width: 1200px;
+	  height: 90vh;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 0px; /* pour laisser la place au cercle */
+    }
+
+    /* Le grand cercle incurvé au‑dessus */
+    .cards-wrapper::before {
+      content: "";
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200vw;
+      height: 400px;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue));
+      border-radius: 50%;
+      z-index: -1;
+      filter: blur(40px);
+    }
+
+    .card {
+      background: var(--card-bg);
+      width: 30%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgb(255, 255, 255);
+      cursor: pointer;
+      transition: transform var(--transition);
+	  border: 1px solid white;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      transition: transform var(--transition), filter var(--transition);
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    .card-content {
+      padding: 16px;
+      text-align: center;
+    }
+
+    .card-title {
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--neon-pink);
+    }
+
+    .card-text {
+      font-size: 1rem;
+      line-height: 1.4;
+      color: #ccc;
+    }
+
+	.card-img {
+	  height: 80vh;
+	  w
+	}
+
+    @media (max-width: 800px) {
+      .cards-wrapper { flex-direction: column; align-items: center; padding-top: 150px; }
+      .card { width: 80%; margin-bottom: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cards-wrapper">
+    <div class="card" onclick="location.href='profil1.html'">
+      <img src="cyberpunk1.png" alt="Personnage 1" class="card-img">
+      <div class="card-content">
+        <h2 class="card-title">Nox</h2>
+        <p class="card-text">Pirate de l’ombre et virtuose du code.</p>
+      </div>
+    </div>
+    <div class="card" onclick="location.href='profil2.html'">
+      <img src="cyberpunk2.jpg" alt="Personnage 2" class="card-img">
+      <div class="card-content">
+        <h2 class="card-title">Vapor</h2>
+        <p class="card-text">Artiste des néons et hackeuse d’émotions.</p>
+      </div>
+    </div>
+    <div class="card" onclick="location.href='profil3.html'">
+      <img src="cyberpunk3.jpg" alt="Personnage 3" class="card-img">
+      <div class="card-content">
+        <h2 class="card-title">Glitch</h2>
+        <p class="card-text">Mécano de l’impossible et maître des drones.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

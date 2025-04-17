@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accueil Cyberpunk</title>
+	<link rel="stylesheet" href="./css/cards.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./cursor.css">
+    <style>
+      :root {
+        --bg-dark: #0d0d0d;
+        --neon-pink: #ff16d1;
+        --neon-blue: #00e5ff;
+        --card-bg: rgba(30, 30, 30, 0.8);
+        --transition: 0.5s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @font-face {
+        font-family: "Neon";
+        src: url("Neon.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: #fff;
+        font-family: "Segoe UI", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+		cursor: none;
+      }
+
+
+
+
+    /* Cercle extérieur (halo) */
+    .cursor-halo, .cursor-core {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-halo {
+      width: 60px;
+      height: 60px;
+      border: 2px solid #0ff;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 8px #0ff) drop-shadow(0 0 16px #0ff);
+    }
+
+    /* Cercle intérieur (cœur plus intense) */
+    .cursor-core {
+      width: 12px;
+      height: 12px;
+      background: #0ff;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 4px #0ff);
+    }
+	  
+    </style>
+  </head>
+  <body class="">
+    <div class="cards-wrapper">
+      <div class="card" onclick="location.href='profil1.html'">
+		<div class="card-inner">
+        	<img src="cyberpunk2.png" alt="Personnage 2" class="card-img" />
+			<div class="card-content">
+				<h2 class="card-title">Vapor</h2>
+				<p class="card-text">Artiste des néons et hackeuse d’émotions.</p>
+			</div>
+		</div>
+      </div>
+		<div class="card middle-card" onclick="location.href='profil2.html'" style="">
+			<div class="card-inner">
+				<img src="cyberpunk1.png" alt="Personnage 1" class="card-img" />
+				<div class="card-content">
+					<h2 class="card-title">Nox</h2>
+					<p class="card-text">Pirate de l’ombre et virtuose du code.</p>
+				</div>
+			</div>
+    	</div>
+      <div class="card" onclick="location.href='profil3.html'">
+		<div class="card-inner">
+			<img src="cyberpunk3.png" alt="Personnage 3" class="card-img" />
+			<div class="card-content">
+				<h2 class="card-title">Glitch</h2>
+				<p class="card-text">Mécano de l’impossible et maître des drones.</p>
+			</div>
+        </div>
+      </div>
+    </div>
+	<div class="cursor-halo"></div>
+	<div class="cursor-core"></div>
+	<script src="neon.js"></script>
+  </body>
+</html>

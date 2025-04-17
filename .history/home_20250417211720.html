@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accueil Cyberpunk</title>
+    <style>
+
+	@font-face {
+        font-family: "Neon";
+        src: url("Neon.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+	  * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+
+      body {
+        background-color: var(--bg-dark);
+        color: #fff;
+        font-family: "Segoe UI", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      :root {
+        --bg-dark: #0d0d0d;
+        --neon-pink: #ff16d1;
+        --neon-blue: #00e5ff;
+        --card-bg: rgba(30, 30, 30, 0.8);
+        --transition: 0.5s ease;
+      }
+
+	  .cards-wrapper {
+  display: flex;
+  justify-content: space-between;
+  perspective: 1200px;
+  width: 90%;
+  max-width: 80%;
+  height: 90vh;
+}
+
+/* transition 3D sur la coque et son intérieur */
+.card, 
+.card-inner {
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* carte 1 : angle initial + contre-angle sur le inner */
+.card:nth-child(1) {
+  transform-origin: right center;
+  transform: rotateY(15deg);
+}
+.card:nth-child(1) .card-inner {
+  transform-origin: right center;
+  transform: rotateY(-15deg);
+}
+
+/* carte du milieu : pas d’angle */
+.card:nth-child(2) {
+  transform-origin: center center;
+  transform: rotateY(0deg);
+}
+.card:nth-child(2) .card-inner {
+  transform: none;
+}
+
+/* carte 3 : angle inverse + contre-angle sur le inner */
+.card:nth-child(3) {
+  transform-origin: left center;
+  transform: rotateY(-15deg);
+}
+.card:nth-child(3) .card-inner {
+  transform-origin: left center;
+  transform: rotateY(15deg);
+}
+
+/* AU HOVER : on remet tout à plat */
+.card:hover {
+  transform: rotateY(0deg);
+}
+.card:hover .card-inner {
+  transform: rotateY(0deg);
+}
+
+
+
+
+      .card-content h2 {
+        font-family: "Neon", sans-serif;
+        font-size: 2rem;
+        color: white;
+      }
+
+      @media (max-width: 800px) {
+        .cards-wrapper {
+          flex-direction: column;
+          align-items: center;
+          padding-top: 150px;
+        }
+        .card {
+          width: 80%;
+          margin-bottom: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body class="">
+	<div class="cards-wrapper">
+		<div class="card" onclick="location.href='profil1.html'">
+		  <div class="card-inner">
+			<img src="cyberpunk1.png" alt="Nox" class="card-img">
+			<div class="card-content">
+			  <h2 class="card-title">Nox</h2>
+			  <p class="card-text">Pirate de l’ombre et virtuose du code.</p>
+			</div>
+		  </div>
+		</div>
+		<div class="card" onclick="location.href='profil2.html'">
+		  <div class="card-inner">
+			<img src="cyberpunk2.png" alt="Vapor" class="card-img">
+			<div class="card-content">
+			  <h2 class="card-title">Vapor</h2>
+			  <p class="card-text">Artiste des néons et hackeuse d’émotions.</p>
+			</div>
+		  </div>
+		</div>
+		<div class="card" onclick="location.href='profil3.html'">
+		  <div class="card-inner">
+			<img src="cyberpunk3.png" alt="Glitch" class="card-img">
+			<div class="card-content">
+			  <h2 class="card-title">Glitch</h2>
+			  <p class="card-text">Mécano de l’impossible et maître des drones.</p>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	<script src="neon.js"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coder's Neon Cursor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0d1117; /* Dark background for coding vibe */
+      color: white;
+      font-family: 'Courier New', monospace; /* Monospaced font for coder's feel */
+      overflow: hidden;
+      cursor: none; /* Hide default cursor */
+      transition: background 0.5s ease;
+    }
+
+    /* Custom cursor style */
+    .cursor {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Neon glow effect */
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: all 0.1s ease;
+    }
+
+    /* Neon trail behind the cursor */
+    .neon-trail {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      pointer-events: none;
+      transform-origin: center;
+      animation: trailEffect 1.5s ease-out forwards;
+    }
+    /* Trail expansion animation */
+    @keyframes trailEffect {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(10);
+        opacity: 0;
+      }
+    }
+    /* Light border effect for the page */
+    .page-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 2px solid #ffffff;
+      pointer-events: none;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Custom border around the page -->
+  <div class="page-border"></div>
+
+  <!-- The custom cursor element -->
+  <div class="cursor"></div>
+
+  <script>
+    const cursor = document.querySelector('.cursor');
+    const neonColors = ['#00ffcc', '#ff00ff', '#ff5733', '#00ffff', '#f39c12']; // Neon colors
+    let currentColorIndex = 0;
+
+    // Function to change the background color and the neon cursor color
+    function changeColor() {
+      currentColorIndex = (currentColorIndex + 1) % neonColors.length;
+      const currentColor = neonColors[currentColorIndex];
+
+      cursor.style.backgroundColor = currentColor; // Cursor color change
+    }
+
+    // Function to create the neon trail effect
+    function createTrail(e) {
+      const trail = document.createElement('div');
+      trail.classList.add('neon-trail');
+      trail.style.backgroundColor = cursor.style.backgroundColor; // Matching trail color with the cursor
+      trail.style.left = `${e.clientX}px`;
+      trail.style.top = `${e.clientY}px`;
+      document.body.appendChild(trail);
+
+      // Remove trail after animation completes
+      setTimeout(() => {
+        trail.remove();
+      }, 1500);
+    }
+
+    // Update the position of the custom cursor
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+      createTrail(e);
+    });
+
+    // Change the color of the cursor and background every 4 seconds
+    setInterval(changeColor, 4000);
+
+  </script>
+</body>
+</html>

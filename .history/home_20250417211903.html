@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accueil Cyberpunk</title>
+    <style>
+      :root {
+        --bg-dark: #0d0d0d;
+        --neon-pink: #ff16d1;
+        --neon-blue: #00e5ff;
+        --card-bg: rgba(30, 30, 30, 0.8);
+        --transition: 0.5s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @font-face {
+        font-family: "Neon";
+        src: url("Neon.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: #fff;
+        font-family: "Segoe UI", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+    /* -- Variables et mise en forme de base restent inchangées */
+.cards-wrapper {
+  perspective: 1200px;
+}
+
+.card {
+  --angle: 0deg;
+  --origin: center center;
+  transform-origin: var(--origin);
+  transform-style: preserve-3d;
+  transition: transform var(--transition);
+  transform: rotateY(var(--angle));
+}
+
+/* Définition des angles initiaux */
+.cards-wrapper .card:nth-child(1) { --angle: 15deg;  --origin: right center; }
+.cards-wrapper .card:nth-child(2) { --angle: 0deg;   --origin: center center; }
+.cards-wrapper .card:nth-child(3) { --angle: -15deg; --origin: left center; }
+
+/* Au survol, on force l’angle à 0 et on applique la transform directement */
+.card:hover {
+  --angle: 0deg;
+  transform: rotateY(0deg);
+}
+
+/* Contenu intérieur : on retire toute rotation, pour qu’il reste bien à plat */
+.card-inner {
+  backface-visibility: hidden;
+  transform-origin: var(--origin);
+  transition: transform var(--transition);
+  transform: none;
+}
+
+/* Au survol, on s’assure aussi qu’il n’y a plus de rotation */
+.card:hover .card-inner {
+  transform: none;
+}
+
+
+      .card-content {
+        padding: 16px;
+        text-align: center;
+        flex-shrink: 0; /* pour que le contenu garde sa taille d’origine */
+      }
+
+      .card-title {
+        margin-bottom: 8px;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--neon-pink);
+      }
+
+      .card-text {
+        font-size: 1rem;
+        line-height: 1.4;
+        color: #ccc;
+      }
+
+      .card-content h2 {
+        font-family: "Neon", sans-serif;
+        font-size: 2rem;
+        color: white;
+      }
+
+      @media (max-width: 800px) {
+        .cards-wrapper {
+          flex-direction: column;
+          align-items: center;
+          padding-top: 150px;
+        }
+        .card {
+          width: 80%;
+          margin-bottom: 30px;
+        }
+      }
+
+	  
+    </style>
+  </head>
+  <body class="">
+    <div class="cards-wrapper">
+      <div class="card" onclick="location.href='profil2.html'">
+		<div class="card-inner">
+        	<img src="cyberpunk2.png" alt="Personnage 2" class="card-img" />
+			<div class="card-content">
+				<h2 class="card-title">Vapor</h2>
+				<p class="card-text">Artiste des néons et hackeuse d’émotions.</p>
+			</div>
+		</div>
+      </div>
+		<div class="card" onclick="location.href='profil1.html'" style="height: 90%; position: absolute; top: 3%; left: 35%">
+			<div class="card-inner">
+				<img src="cyberpunk1.png" alt="Personnage 1" class="card-img" />
+				<div class="card-content">
+					<h2 class="card-title">Nox</h2>
+					<p class="card-text">Pirate de l’ombre et virtuose du code.</p>
+				</div>
+			</div>
+    	</div>
+      <div class="card" onclick="location.href='profil3.html'">
+		<div class="card-inner">
+			<img src="cyberpunk3.png" alt="Personnage 3" class="card-img" />
+			<div class="card-content">
+				<h2 class="card-title">Glitch</h2>
+				<p class="card-text">Mécano de l’impossible et maître des drones.</p>
+			</div>
+        </div>
+      </div>
+    </div>
+	<script src="neon.js"></script>
+  </body>
+</html>
